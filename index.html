@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iXName.com — a name for the systems that name everything else</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --table:      #d9d6c9;
+    --paper:      #efeee6;
+    --paper-deep: #e6e4d8;
+    --ink:        #1d2430;
+    --ink-soft:   #5b6472;
+    --ink-faint:  #8b93a0;
+    --line:       #c7c3b3;
+    --stamp:      #a23a2b;
+    --stamp-deep: #7e2c20;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--table);
+    color: var(--ink);
+    font-family: var(--serif);
+    -webkit-font-smoothing: antialiased;
+    padding: clamp(24px, 6vw, 72px) clamp(16px, 4vw, 24px);
+  }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  .sheet{
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+  }
+
+  /* header strip */
+  .strip{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 16px clamp(20px, 5vw, 44px);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+  }
+  .strip .status { color: var(--stamp); }
+
+  .strip-rule{
+    height: 1px;
+    background: var(--ink);
+    width: 0%;
+    animation: draw 1.1s ease-out 0.15s forwards;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .strip-rule{ animation: none; width: 100%; }
+  }
+  @keyframes draw { to { width: 100%; } }
+
+  /* hero */
+  .hero{
+    padding: clamp(40px, 8vw, 64px) clamp(20px, 5vw, 44px) clamp(28px, 5vw, 40px);
+  }
+  .hero h1{
+    margin: 0 0 18px;
+    font-size: clamp(2.1rem, 6vw, 3.1rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+  .hero p.tagline{
+    margin: 0;
+    max-width: 30ch;
+    font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* record fields */
+  .record{
+    border-top: 1px solid var(--line);
+  }
+  .field{
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 24px;
+    padding: 22px clamp(20px, 5vw, 44px);
+    border-bottom: 1px solid var(--line);
+  }
+  .field:nth-child(odd){ background: var(--paper-deep); }
+  .field:last-child{ border-bottom: none; }
+
+  .field .label{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    padding-top: 3px;
+  }
+
+  .field .value{
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+  .field .value.mono{
+    font-family: var(--mono);
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .field .value.status{
+    font-family: var(--mono);
+    font-size: 0.92rem;
+    color: var(--stamp);
+    font-weight: 500;
+  }
+  .field .value p{ margin: 0; }
+  .field .value p + p{ margin-top: 12px; }
+  .field .note{
+    display: block;
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+  }
+  .field .note a{ text-decoration: underline; text-underline-offset: 2px; }
+
+  /* tags */
+  .tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    padding: 6px 10px;
+    background: var(--paper);
+  }
+
+  /* acquisition actions */
+  .actions{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .btn{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    padding: 12px 18px;
+    border: 1px solid var(--ink);
+    background: transparent;
+    text-decoration: none;
+    color: var(--ink);
+    display: inline-block;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn:hover{ background: var(--ink); color: var(--paper); }
+  .btn.primary{
+    border-color: var(--stamp);
+    color: var(--stamp-deep);
+  }
+  .btn.primary:hover{
+    background: var(--stamp);
+    color: var(--paper);
+  }
+
+  .closer{
+    padding: 20px clamp(20px, 5vw, 44px) clamp(32px, 6vw, 44px);
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--line);
+  }
+
+  footer{
+    max-width: 720px;
+    margin: 18px auto 0;
+    padding: 0 clamp(20px, 5vw, 44px);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 560px){
+    .field{
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .field .label{ padding-top: 0; }
+    footer{ flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="sheet">
+
+    <div class="strip">
+      <span>REGISTRY RECORD NO. IXN&nbsp;&mdash;&nbsp;000</span>
+      <span class="status">AVAILABLE</span>
+    </div>
+    <div class="strip-rule"></div>
+
+    <div class="hero">
+      <h1>iXName</h1>
+      <p class="tagline">A name for the systems that name everything else.</p>
+    </div>
+
+    <div class="record">
+
+      <div class="field">
+        <div class="label">DOMAIN</div>
+        <div class="value mono">iXName.com</div>
+      </div>
+
+      <div class="field">
+        <div class="label">TYPE</div>
+        <div class="value">Namespace / naming-layer candidate</div>
+      </div>
+
+      <div class="field">
+        <div class="label">ORIGIN OF &ldquo;IX&rdquo;</div>
+        <div class="value">Not fixed.
+          <span class="note">The exchange-point resonance is intentional. The definition is not — see Thesis.</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="label">THESIS</div>
+        <div class="value">
+          <p>Before a system can be discovered, an agent can be routed, or an identity can be verified, something has to name it &mdash; precisely enough to resolve, generally enough to extend.</p>
+          <p>That naming layer is infrastructure. It gets built once, quietly, and everything downstream depends on it having been done right.</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="label">SCOPE</div>
+        <div class="value">
+          <div class="tags">
+            <span class="tag">digital identity</span>
+            <span class="tag">namespaces</span>
+            <span class="tag">AI agents</span>
+            <span class="tag">network identities</span>
+            <span class="tag">internet infrastructure</span>
+            <span class="tag">developer infrastructure</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="label">ACQUISITION</div>
+        <div class="value">
+          <p>iXName.com is available for strategic acquisition. Principals and operators only.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://www.afternic.com/" target="_blank" rel="noopener">View listing</a>
+            <a class="btn" href="mailto:agent@sohadot.com">Contact directly</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="closer">A record, not a pitch.</div>
+
+  </div>
+
+  <footer>
+    <span>iXName.com</span>
+    <span>sohadot.com</span>
+  </footer>
+
+</body>
+</html>
