@@ -135,6 +135,10 @@
   }
   .field .value p{ margin: 0; }
   .field .value p + p{ margin-top: 12px; }
+  .field .value .lead{
+    font-size: 1.08rem;
+    line-height: 1.55;
+  }
   .field .note{
     display: block;
     margin-top: 8px;
@@ -143,6 +147,18 @@
     color: var(--ink-faint);
   }
   .field .note a{ text-decoration: underline; text-underline-offset: 2px; }
+
+  /* section divider label (spans full width, opens layer 2) */
+  .divider{
+    padding: 14px clamp(20px, 5vw, 44px);
+    border-bottom: 1px solid var(--line);
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
 
   /* tags */
   .tags{
@@ -158,6 +174,61 @@
     border: 1px solid var(--line);
     padding: 6px 10px;
     background: var(--paper);
+  }
+
+  /* naming chain */
+  .chain{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 6px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+  }
+  .chain .node{
+    border: 1px solid var(--ink);
+    padding: 7px 11px;
+    background: var(--paper);
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .chain .arrow{
+    color: var(--stamp);
+    font-weight: 500;
+  }
+  .chain-caption{
+    display: block;
+    margin-top: 14px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* market layers */
+  .layers{
+    display: grid;
+    gap: 0;
+  }
+  .layer{
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .layer:first-child{ padding-top: 0; }
+  .layer:last-child{ border-bottom: none; padding-bottom: 0; }
+  .layer h3{
+    margin: 0 0 4px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .layer p{
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
   }
 
   /* acquisition actions */
@@ -222,6 +293,7 @@
 
   <div class="sheet">
 
+    <!-- 1. REGISTRY HEADER — the commercial entry point -->
     <div class="strip">
       <span>REGISTRY RECORD NO. IXN&nbsp;&mdash;&nbsp;000</span>
       <span class="status">AVAILABLE</span>
@@ -235,6 +307,7 @@
 
     <div class="record">
 
+      <!-- 2. IDENTITY RECORD — what you are looking at, in seconds -->
       <div class="field">
         <div class="label">DOMAIN</div>
         <div class="value mono">iXName.com</div>
@@ -242,46 +315,105 @@
 
       <div class="field">
         <div class="label">TYPE</div>
-        <div class="value">Namespace / naming-layer candidate</div>
-      </div>
-
-      <div class="field">
-        <div class="label">ORIGIN OF &ldquo;IX&rdquo;</div>
-        <div class="value">Not fixed.
-          <span class="note">The exchange-point resonance is intentional. The definition is not — see Thesis.</span>
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="label">THESIS</div>
-        <div class="value">
-          <p>Before a system can be discovered, an agent can be routed, or an identity can be verified, something has to name it &mdash; precisely enough to resolve, generally enough to extend.</p>
-          <p>That naming layer is infrastructure. It gets built once, quietly, and everything downstream depends on it having been done right.</p>
-        </div>
+        <div class="value">Naming infrastructure</div>
       </div>
 
       <div class="field">
         <div class="label">SCOPE</div>
         <div class="value">
           <div class="tags">
-            <span class="tag">digital identity</span>
             <span class="tag">namespaces</span>
+            <span class="tag">digital identity</span>
             <span class="tag">AI agents</span>
-            <span class="tag">network identities</span>
-            <span class="tag">internet infrastructure</span>
-            <span class="tag">developer infrastructure</span>
           </div>
         </div>
       </div>
 
+    </div>
+
+    <!-- Layer 2 opens here: the page now earns the valuation -->
+    <div class="divider">Thesis &amp; Position</div>
+
+    <div class="record">
+
+      <!-- 3. CORE THESIS -->
+      <div class="field">
+        <div class="label">THESIS</div>
+        <div class="value">
+          <p class="lead">A name is not a label added after the system is built. It is the first piece of infrastructure.</p>
+          <p>Before a system can be discovered, an agent routed, an identity verified, or a namespace resolved, something has to name it &mdash; precisely enough to distinguish it, consistently enough to resolve it, and generally enough to extend.</p>
+          <p>Naming is infrastructure because everything downstream depends on it.</p>
+        </div>
+      </div>
+
+      <!-- 4. NAMING CHAIN -->
+      <div class="field">
+        <div class="label">NAMING CHAIN</div>
+        <div class="value">
+          <div class="chain">
+            <span class="node">NAME</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">IDENTITY</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">RESOLUTION</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">ROUTING</span>
+            <span class="arrow">&rarr;</span>
+            <span class="node">TRUST</span>
+          </div>
+          <span class="chain-caption">What begins as a name becomes an addressable identity, then a resolvable object, then something systems can route, verify, and trust.</span>
+        </div>
+      </div>
+
+      <!-- 5. WHY iXName — IX given a conceptual function, not a defensive field -->
+      <div class="field">
+        <div class="label">WHY iXName</div>
+        <div class="value">
+          <p>IX is intentionally open. It carries the compressed technical character of exchange, indexing, identity, and infrastructure without being locked to one expansion.</p>
+          <p>That openness is part of the value: the name can sit above more than one naming architecture.</p>
+        </div>
+      </div>
+
+      <!-- 6. WHERE THE NAME FITS — three operational markets, not loose tags -->
+      <div class="field">
+        <div class="label">WHERE IT FITS</div>
+        <div class="value">
+          <div class="layers">
+            <div class="layer">
+              <h3>Namespaces</h3>
+              <p>Systems that issue, organize, resolve, or govern names.</p>
+            </div>
+            <div class="layer">
+              <h3>Digital Identity</h3>
+              <p>Identifiers, handles, machine identities, trust layers.</p>
+            </div>
+            <div class="layer">
+              <h3>AI Agents</h3>
+              <p>Agent names, registries, routing identities, machine-to-machine discovery.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. STRATEGIC POSITION -->
+      <div class="field">
+        <div class="label">POSITION</div>
+        <div class="value">
+          <p>iXName does not describe one product. It can sit above the naming layer itself &mdash; the systems that assign, resolve, register, route, or govern digital identity.</p>
+          <p>That makes it suitable for infrastructure, not just an application.</p>
+        </div>
+      </div>
+
+      <!-- 8. ACQUISITION — return to the asset, close clearly -->
       <div class="field">
         <div class="label">ACQUISITION</div>
         <div class="value">
-          <p>iXName.com is available for strategic acquisition. Principals and operators only.</p>
+          <p>iXName.com is available for strategic acquisition. For principals and operators building naming, identity, namespace, or agent infrastructure.</p>
           <div class="actions">
-            <a class="btn primary" href="https://forsale.godaddy.com/forsale/ixname.com?utm_source=TDFS_BINNS&utm_medium=parkedpages&utm_campaign=x_corp_tdfs-binns_base&traffic_type=TDFS_BINNS&traffic_id=binns&" target="_blank" rel="noopener">Buy now &mdash; view listing</a>
+            <a class="btn primary" href="https://forsale.godaddy.com/forsale/ixname.com?utm_source=TDFS_BINNS&utm_medium=parkedpages&utm_campaign=x_corp_tdfs-binns_base&traffic_type=TDFS_BINNS&traffic_id=binns&" target="_blank" rel="noopener">View listing &mdash; buy now</a>
             <a class="btn" href="mailto:agent@sohadot.com">Contact directly</a>
           </div>
+          <span class="note">IX is technical in character and intentionally open across contexts.</span>
         </div>
       </div>
 
